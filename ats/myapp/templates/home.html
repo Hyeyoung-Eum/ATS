@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>탁구 동아리 대전 기록</title>
+    <link rel="stylesheet" href="{% static 'home.css' %}" />
+  </head>
+  <body>
+    <header>
+      <h1>🏓 에탁소 🏓</h1>
+    </header>
+    <main>
+      <table class="user-list">
+        <thead>
+          <tr>
+            <th>순위</th>
+            <th>이름</th>
+            <th>승</th>
+            <th>무</th>
+            <th>패</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for user in users %}
+          <tr class="user-entry">
+            <td class="rank">
+              {% if forloop.last %}💩쫄{% elif forloop.first %}👑1등{% else %}{{ forloop.counter }}등{% endif %}
+            </td>
+            <td class="user-name">{{ user.name }}</td>
+            <td class="stats">{{ user.wins }}</td>
+            <td class="stats">{{ user.draws }}</td>
+            <td class="stats">{{ user.losses }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <div class="links">
+        <a class="button" href="{% url 'add' %}">경기 추가</a>
+        <a class="button" href="{% url 'addplayer' %}">선수 추가</a>
+        <a class="button" href="{% url 'resultlist' %}">결과 보기</a>
+      </div>
+    </main>
+  </body>
+</html>

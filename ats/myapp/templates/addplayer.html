@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>선수 추가</title>
+    <link rel="stylesheet" href="{% static 'addplayer.css' %}" />
+  </head>
+  <body>
+    <header>
+      <h1>🏓 선수추가 🏓</h1>
+    </header>
+    <div class="container">
+      <div>
+        <form method="post" action="{% url 'addplayer' %}">
+          <div>
+            {% csrf_token %}
+            <label for="player_name">선수 이름:</label>
+            <input type="text" id="player_name" name="player_name" maxlength="3" required />
+            <br /><br />
+          </div>
+          <div>
+            <button type="submit">선수 추가</button>
+            {% if message %}
+            <div>{{ message }}</div>
+            {% endif %}
+          </div>
+        </form>
+      </div>
+      <div>
+        <a href="{% url 'home' %}" class="button">홈으로</a>
+      </div>
+    </div>
+  </body>
+</html>

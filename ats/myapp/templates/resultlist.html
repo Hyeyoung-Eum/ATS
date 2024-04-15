@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Game Results</title>
+    <link rel="stylesheet" href="{% static 'resultlist.css' %}" />
+  </head>
+  <body>
+    <header>
+      <h1>🏓 게임 결과 🏓</h1>
+    </header>
+    <section>
+      <h2>오늘의 게임</h2>
+      <table border="1">
+        <tr>
+          <th>N</th>
+          <th>Date</th>
+          <th>A</th>
+          <th>B</th>
+          <th>A</th>
+          <th>B</th>
+        </tr>
+        {% for result in todays_games %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ result.datetime|date:"m월 d일 H:i" }}</td>
+          <td>{{ result.player_a.name }}</td>
+          <td>{{ result.player_b.name }}</td>
+          <td>{{ result.score_a }}</td>
+          <td>{{ result.score_b }}</td>
+        </tr>
+        {% endfor %}
+      </table>
+    </section>
+    <section>
+      <h2>이전 게임</h2>
+      <table border="1">
+        <tr>
+          <th>N</th>
+          <th>Date</th>
+          <th>A</th>
+          <th>B</th>
+          <th>A</th>
+          <th>B</th>
+        </tr>
+        {% for result in past_games %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ result.datetime|date:"m월 d일 H:i" }}</td>
+          <td>{{ result.player_a.name }}</td>
+          <td>{{ result.player_b.name }}</td>
+          <td>{{ result.score_a }}</td>
+          <td>{{ result.score_b }}</td>
+        </tr>
+        {% endfor %}
+      </table>
+    </section>
+    <a href="{% url 'home' %}">홈으로</a>
+  </body>
+</html>
