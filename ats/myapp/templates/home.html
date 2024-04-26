@@ -51,7 +51,7 @@
           {% for photo in photos %}
           <div class="photo">
             <img class="imgtag" src="{{ photo.image.url }}" alt="{{ photo.title }}" />
-            <div>{{ photo.title }}</div>
+            <div class="imgtext">{{ photo.title }}</div>
           </div>
           {% endfor %}
         </div>
