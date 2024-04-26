@@ -99,3 +99,10 @@ img:hover {
 .imgtext {
   font-size: 0.7rem;
 }
+
+.photo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
