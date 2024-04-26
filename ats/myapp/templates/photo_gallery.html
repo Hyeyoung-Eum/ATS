@@ -2,17 +2,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Photo Gallery</title>
+    <title>ATS : 갤러리</title>
     <link rel="stylesheet" href="{% static 'myapp/css/photo_gallery.css' %}" />
   </head>
   <body>
-    <h1>Photo Gallery</h1>
+    <h1>갤러리</h1>
     {% for photo in photos %}
     <div>
       <img src="{{ photo.image.url }}" alt="{{ photo.title }}" />
       <p>{{ photo.title }}</p>
     </div>
     {% endfor %}
-    <a href="/">Back to Home</a>
+    <a href="/">홈으로</a>
   </body>
 </html>

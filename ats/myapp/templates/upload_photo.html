@@ -8,15 +8,15 @@
 
   </head>
   <body>
-    <h1>Upload a New Photo</h1>
+    <h1>활동사진을 추가하시오</h1>
     <form method="post" enctype="multipart/form-data">
       {% csrf_token %}
-      <label for="title">Title:</label>
+      <label for="title">사진 제목:</label>
       <input type="text" name="title" id="title" required /></br>
-      <label for="image">Image:</label>
+      <label for="image">이미지:</label>
       <input type="file" name="image" id="image" required /></br>
-      <button type="submit">Upload Photo</button>
+      <button type="submit">업로드하기</button>
     </form>
-    <a href="/photos">Back to Gallery</a>
+    <a href="/photos">갤러리로</a>
   </body>
 </html>
