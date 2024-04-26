@@ -10,7 +10,7 @@
     <h1>Photo Gallery</h1>
     {% for photo in photos %}
     <div>
-      <img src="{{ photo.image.url }}" alt="{{ photo.title }}" />
+      <img src="{% static '{{photo.image.url}}' %}" alt="{{ photo.title }}" />
       <p>{{ photo.title }}</p>
     </div>
     {% endfor %}
