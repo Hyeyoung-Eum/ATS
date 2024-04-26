@@ -7,7 +7,9 @@ import os
 # Create your views here.
 def home(request):
     users = User.objects.all().order_by('-wins', '-draws', 'losses')
-    return render(request, 'home.html', {'users':users})
+    photos = Photo.objects.all().order_by('-uploaded_at')[:2]
+
+    return render(request, 'home.html', {'users':users, 'photos':photos})
 
 @csrf_exempt
 def add(request):
