@@ -24,5 +24,7 @@ urlpatterns = [
     path('add', views.add, name='add'),
     path('resultlist', views.resultlist, name='resultlist'),
     path('addplayer', views.addplayer, name='addplayer'),
-
+    path('personal/<int:personal_id>', views.personal, name='personal'),
+    path('photos/', views.photo_gallery, name='photo_gallery'),
+    path('upload_photo/', views.upload_photo, name="upload_photo"),
 ]

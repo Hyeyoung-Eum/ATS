@@ -21,3 +21,11 @@ class GameResult(models.Model):
 
     def __str__(self):
         return f"Game {self.game_number} on {self.datetime}: {self.player_a.name} vs {self.player_b.name} ({self.score_a}-{self.score_b})"
+
+class Photo(models.Model):
+    title = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='photos/')
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title

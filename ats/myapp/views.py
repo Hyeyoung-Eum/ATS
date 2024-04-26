@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import User, GameResult
+from .models import User, GameResult, Photo
 from django.views.decorators.csrf import csrf_exempt
 from django.utils import timezone
+import os
 # Create your views here.
 def home(request):
     users = User.objects.all().order_by('-wins', '-draws', 'losses')
@@ -66,6 +67,52 @@ def resultlist(request):
     past_games = GameResult.objects.filter(datetime__date__lt=today)
     return render(request, 'resultlist.html', {'todays_games':todays_games, 'past_games':past_games})
 
+def personal(request, personal_id):
+    personal_data=User.objects.get(id=personal_id)
+    users = User.objects.all().order_by('id')
+    user_index_map = {user.id: index for index,user in enumerate(users)}
 
+    personal_results = GameResult.objects.filter(
+        player_a=personal_data.id
+    ) | GameResult.objects.filter(
+        player_b=personal_data.id
+    )
 
+    score_matrix=[[0,0,0] for _ in range(len(users))] #승무패
 
+    for result in personal_results:
+        if result.player_a.id == personal_data.id: #player_a일 때
+            row_num=user_index_map[result.player_b.id]
+            if result.score_a > result.score_b:
+                score_matrix[row_num][0] +=1 #승리
+            elif result.score_a == result.score_b:
+                score_matrix[row_num][1] +=1 #무승부
+            else: #패배
+                score_matrix[row_num][2] +=1
+        elif result.player_b.id == personal_data.id: #player_b일 때
+            row_num=user_index_map[result.player_a.id]
+            if result.score_a > result.score_b:
+                score_matrix[row_num][2] +=1 #패배
+            elif result.score_a == result.score_b:
+                score_matrix[row_num][1] +=1
+            else: #승리
+                score_matrix[row_num][0] +=1
+
+    personal_results = personal_results.order_by("datetime")
+
+    users_scores = zip(users, score_matrix)
+
+    return render(request, 'personal.html',{'personal_data':personal_data, 'personal_results':personal_results, 'users_scores':users_scores } )
+
+def photo_gallery(request):
+    photos = Photo.objects.all().order_by('-uploaded_at')
+    return render(request, 'photo_gallery.html', {'photos':photos})
+
+def upload_photo(request):
+    if request.method == 'POST':
+        title = request.POST['title']
+        image = request.FILES['image']
+        photo = Photo(title=title, image=image)
+        photo.save()
+        return redirect('/photos')
+    return render(request, 'upload_photo.html')

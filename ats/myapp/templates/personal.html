@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'personal.css' %}" />
+  </head>
+  <body>
+    <header>
+      <h1>🏓 {{personal_data.name}} 페이지 🏓</h1>
+    </header>
+    <section>
+      <h2>전체 게임 결과</h2>
+      <table border="1">
+        <tr>
+          <th>N</th>
+          <th>Date</th>
+          <th>A</th>
+          <th>B</th>
+          <th>A</th>
+          <th>B</th>
+        </tr>
+        {% for result in personal_results %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ result.datetime|date:"m월 d일 H:i" }}</td>
+          <td>{{ result.player_a.name }}</td>
+          <td>{{ result.player_b.name }}</td>
+          <td>{{ result.score_a }}</td>
+          <td>{{ result.score_b }}</td>
+        </tr>
+        {% endfor %}
+      </table>
+    </section>
+
+    <section>
+        <h2>나는 누구에게 강하고 약할까?</h2>
+        <table border="1">
+          <tr>
+            <th>경쟁자</th>
+            <th>승</th>
+            <th>무</th>
+            <th>패</th>
+          </tr>
+          {% for users, scores in users_scores %}
+          <tr>
+            <td>{{ users.name }}</td>
+            <td>{{ scores.0 }}</td>
+            <td>{{ scores.1 }}</td>
+            <td>{{ scores.2 }}</td>
+          </tr>
+          {% endfor %}
+        </table>
+      </section>
+
+    <div>{{score_matrix}}
+    <a class='button' href="{% url 'home' %}">홈으로</a>
+  </body>
+</html>

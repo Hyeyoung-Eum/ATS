@@ -28,7 +28,7 @@
             <td class="rank">
               {% if forloop.last %}💩쫄{% elif forloop.first %}👑1등{% else %}{{ forloop.counter }}등{% endif %}
             </td>
-            <td class="user-name">{{ user.name }}</td>
+            <td class="user-name"><a href="{% url 'personal' user.id %}">{{ user.name }}</a></td>
             <td class="stats">{{ user.wins }}</td>
             <td class="stats">{{ user.draws }}</td>
             <td class="stats">{{ user.losses }}</td>
@@ -42,5 +42,21 @@
         <a class="button" href="{% url 'resultlist' %}">결과 보기</a>
       </div>
     </main>
+    <section>
+      <header>
+        <h1>🏓 에탁소 이야기 🏓</h1>
+      </header>
+    <div>
+        <h2>Recent Photos</h2>
+        {% for photo in photos %}
+        <div>
+            <img src="{{ photo.image.url }}" alt="{{ photo.title }}">
+            <p>{{ photo.title }}</p>
+        </div>
+        {% endfor %}
+    </div>
+    <a href="/photos">View Photo Gallery</a> | <a href="/upload_photo">Upload Photo</a>
+</body>
+    </section>
   </body>
 </html>
