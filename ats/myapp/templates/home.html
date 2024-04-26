@@ -46,18 +46,20 @@
       <header>
         <h1>🏓 에탁소 이야기 🏓</h1>
       </header>
-    <div>
+      <div>
         <div class="photos">
-        {% for photo in photos %}
-        <div class="photo">
-            <img class="imgtag" src="{{ photo.image.url }}" alt="{{ photo.title }}">
+          {% for photo in photos %}
+          <div class="photo">
+            <img class="imgtag" src="{{ photo.image.url }}" alt="{{ photo.title }}" />
             <div>{{ photo.title }}</div>
+          </div>
+          {% endfor %}
         </div>
-        {% endfor %}
       </div>
-    </div>
-    <a href="/photos">View Photo Gallery</a> | <a href="/upload_photo">Upload Photo</a>
-</body>
+      <div class="links">
+        <a class="button" href="{% url 'photo_gallery' %}">갤러리</a>
+        <a class="button" href="{% url 'upload_photo' %}">사진 추가</a>
+      </div>
     </section>
   </body>
 </html>

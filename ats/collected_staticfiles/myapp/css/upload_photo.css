@@ -59,3 +59,32 @@ a {
   text-align: center;
   margin-top: 20px;
 }
+
+a.button {
+  display: inline-block;
+  padding: 0.5rem 0.8rem;
+  margin: 0.5rem 0.25rem;
+
+  background-color: #5c67f2;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  text-align: center;
+}
+
+a.button:hover {
+  background-color: #5c67f2;
+  cursor: pointer;
+}
+
+.links {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+a {
+  text-decoration: none;
+  color: gray;
+}

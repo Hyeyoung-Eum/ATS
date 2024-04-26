@@ -13,6 +13,9 @@
       <p>{{ photo.title }}</p>
     </div>
     {% endfor %}
-    <a href="/">홈으로</a>
+    <div class="links">
+      <a class="button" href="{% url 'home' %}">홈으로</a>
+      <a class="button" href="{% url 'upload_photo' %}">사진추가</a>
+    </div>
   </body>
 </html>

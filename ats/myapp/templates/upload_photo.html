@@ -17,6 +17,9 @@
       <input type="file" name="image" id="image" required /></br>
       <button type="submit">업로드하기</button>
     </form>
-    <a href="/photos">갤러리로</a>
+    <div class="links">
+        <a class="button" href="{% url 'home' %}">홈으로</a>
+        <a class="button" href="{% url 'photo_gallery' %}">갤러리로</a>
+      </div>
   </body>
 </html>
