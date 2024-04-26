@@ -101,6 +101,9 @@ img {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  object-fit: contain;
+  height: 230px;
+  width: 170px;
 }
 img:hover {
   transform: scale(1.05);
