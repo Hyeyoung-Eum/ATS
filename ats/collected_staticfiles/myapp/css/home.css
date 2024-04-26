@@ -97,8 +97,15 @@ img {
   object-fit: contain; /* 이미지 비율 유지 */
   border-radius: 8px;
   transition: transform 0.3s ease;
+  margin: 0px 10px;
 }
 
+.photo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 img:hover {
   transform: scale(1.05);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
