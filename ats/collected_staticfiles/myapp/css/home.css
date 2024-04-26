@@ -14,19 +14,6 @@ header h1 {
   animation: shake 0.5s infinite;
 }
 
-@keyframes shake {
-  0%,
-  100% {
-    transform: translateX(0);
-  }
-  25% {
-    transform: translateX(4px);
-  }
-  75% {
-    transform: translateX(-4px);
-  }
-}
-
 main {
   max-width: 800px;
   margin: 20px auto;
@@ -58,7 +45,6 @@ a.button {
   display: inline-block;
   padding: 0.5rem 0.8rem;
   margin: 0.5rem 0.25rem;
-
   background-color: #4caf50;
   color: white;
   text-decoration: none;
@@ -78,40 +64,28 @@ a.button:hover {
   justify-content: center;
 }
 
-a {
-  text-decoration: none;
-  color: gray;
-}
-
 .photos {
   display: flex;
-  align-items: center;
   justify-content: center;
-  object-fit: contain;
-  height: 230px;
-  width: 350px;
-  object-fit: contain; /* 이미지 비율 유지 */
+  align-items: center;
+  flex-wrap: wrap; /* 추가: 화면 크기에 따라 사진들이 적절히 줄바꿈 */
 }
 
 .photo {
-  object-fit: contain; /* 이미지 비율 유지 */
-  height: auto;
+  flex: 1 1 50%; /* 추가: 사진이 화면의 50% 너비를 차지하도록 설정 */
+  max-width: 300px; /* 추가: 최대 너비 설정 */
+  margin: 10px; /* 추가: 사진 간 간격 조정 */
 }
+
 img {
+  width: 100%;
   height: auto;
-  max-height: 400px; /* 이미지의 최대 높이 설정 */
-  object-fit: contain; /* 이미지 비율 유지 */
+  max-height: 200px; /* 수정: 이미지 최대 높이 설정 */
+  object-fit: contain;
   border-radius: 8px;
   transition: transform 0.3s ease;
-  margin: 0px 10px;
 }
 
-.photo {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
 img:hover {
   transform: scale(1.05);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
