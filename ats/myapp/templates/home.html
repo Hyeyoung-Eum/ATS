@@ -48,12 +48,14 @@
       </header>
     <div>
         <h2>Recent Photos</h2>
+        <div class="photos">
         {% for photo in photos %}
-        <div>
+        <div class="photo">
             <img src="{{ photo.image.url }}" alt="{{ photo.title }}">
             <p>{{ photo.title }}</p>
         </div>
         {% endfor %}
+      </div>
     </div>
     <a href="/photos">View Photo Gallery</a> | <a href="/upload_photo">Upload Photo</a>
 </body>

@@ -82,3 +82,17 @@ a {
   text-decoration: none;
   color: gray;
 }
+
+.photos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.photo {
+  width: 50vw;
+}
+
+.imgtag {
+  width: 100%;
+}
