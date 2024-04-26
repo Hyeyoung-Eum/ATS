@@ -90,7 +90,16 @@ a {
   object-fit: contain;
 }
 
-.imgtag {
-  width: 20vw;
-  margin-left: 5vw;
+img {
+  width: 100%;
+  height: auto;
+  max-height: 400px; /* 이미지의 최대 높이 설정 */
+  object-fit: contain; /* 이미지 비율 유지 */
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
