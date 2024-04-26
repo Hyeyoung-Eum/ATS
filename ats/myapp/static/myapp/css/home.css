@@ -83,6 +83,16 @@ a {
   color: gray;
 }
 
+.photos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  object-fit: contain;
+  height: 230px;
+  width: 350px;
+  object-fit: contain; /* 이미지 비율 유지 */
+}
+
 .photo {
   object-fit: contain; /* 이미지 비율 유지 */
   height: auto;
@@ -101,21 +111,8 @@ img {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  object-fit: contain;
-  height: 230px;
-  width: 170px;
 }
 img:hover {
   transform: scale(1.05);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.photos {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  object-fit: contain;
-  height: 230px;
-  width: 350px;
-  object-fit: contain; /* 이미지 비율 유지 */
 }
