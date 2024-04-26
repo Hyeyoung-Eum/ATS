@@ -90,11 +90,7 @@ a {
   object-fit: contain;
 }
 
-.photo {
-  width: 50vw;
-  object-fit: contain;
-}
-
 .imgtag {
-  width: 100%;
+  width: 20vw;
+  margin-left: 5vw;
 }
