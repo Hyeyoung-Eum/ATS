@@ -27,4 +27,6 @@ urlpatterns = [
     path('personal/<int:personal_id>', views.personal, name='personal'),
     path('photos/', views.photo_gallery, name='photo_gallery'),
     path('upload_photo/', views.upload_photo, name="upload_photo"),
+    path('rankings/<str:season>/', views.rankings, name='rankings'),  # 시즌별 랭킹 경로
+
 ]

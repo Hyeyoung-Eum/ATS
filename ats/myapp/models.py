@@ -18,6 +18,8 @@ class GameResult(models.Model):
     player_b = models.ForeignKey(User, on_delete=models.CASCADE, related_name='games_as_player_b')
     score_a = models.IntegerField()
     score_b = models.IntegerField()
+    season = models.IntegerField(default=1)  # New field with default value
+
 
     def __str__(self):
         return f"Game {self.game_number} on {self.datetime}: {self.player_a.name} vs {self.player_b.name} ({self.score_a}-{self.score_b})"

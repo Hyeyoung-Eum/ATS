@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from .models import User, GameResult, Photo
 from django.views.decorators.csrf import csrf_exempt
 from django.utils import timezone
@@ -11,6 +11,21 @@ def home(request):
 
     return render(request, 'home.html', {'users':users, 'photos':photos})
 
+
+def rankings(request, season):
+    if season == "all":
+        users = User.objects.all().order_by('-wins', '-draws', 'losses')
+    else:
+        users = User.objects.filter(
+            games_as_player_a__season=season
+        ).distinct().order_by('-wins', '-draws', 'losses')
+    users_data = [
+        {'id': user.id, 'name': user.name, 'wins': user.wins, 'draws': user.draws, 'losses': user.losses}
+        for user in users
+    ]
+    return JsonResponse({'users': users_data})
+
+
 @csrf_exempt
 def add(request):
     users = User.objects.all()
@@ -19,6 +34,7 @@ def add(request):
         player_b_name = request.POST['player_b_name']
         score_a = int(request.POST['score_a'])
         score_b = int(request.POST['score_b'])
+        season = int(request.POST['season'])
 
         player_a = User.objects.get(name=player_a_name)
         player_b = User.objects.get(name=player_b_name)
@@ -41,7 +57,8 @@ def add(request):
             player_a=player_a,
             player_b=player_b,
             score_a=score_a,
-            score_b=score_b
+            score_b=score_b,
+            season=season  # season 필드에 폼에서 받은 값을 사용
         )
         game_result.save()
 

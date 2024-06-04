@@ -15,6 +15,14 @@
       <div>
         <form method="post" action="{% url 'add' %}">
           {% csrf_token %}
+
+          <label for="season">시즌:</label>
+          <select id="season" name="season" required>
+            <option value="1">시즌 1</option>
+            <option value="2" selected>시즌 2</option>
+            <!-- 기본적으로 선택된 옵션 -->
+          </select>
+          <br /><br />
           <label for="player_a">A선수 선택:</label>
           <select id="player_a" name="player_a_name" required>
             {% for user in users %}
