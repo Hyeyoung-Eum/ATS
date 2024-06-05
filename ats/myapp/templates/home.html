@@ -35,12 +35,12 @@
     </header>
     <main>
       <select id="season-select" onchange="fetchRanking()">
-        <option value="all">전체 시즌</option>
-        <option value="1">시즌 1</option>
-        <option value="2">시즌 2</option>
-        <option value="3">시즌 3</option>
-        <!-- 추가적인 시즌 옵션 -->
-      </select>
+        <option value="all" {% if selected_season == 'all' %}selected{% endif %}>전체 시즌</option>
+        <option value="1" {% if selected_season == '1' %}selected{% endif %}>시즌 1</option>
+        <option value="2" {% if selected_season == '2' %}selected{% endif %}>시즌 2</option>
+        <option value="3" {% if selected_season == '3' %}selected{% endif %}>시즌 3</option>
+    </select>
+    
       <table class="user-list">
         <thead>
           <tr>
