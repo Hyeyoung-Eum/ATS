@@ -10,7 +10,7 @@ body {
 
 header h1 {
   text-align: center;
-  color: #4caf50;
+  color: #000000;
   animation: shake 0.5s infinite;
 }
 
@@ -45,7 +45,7 @@ a.button {
   display: inline-block;
   padding: 0.5rem 0.8rem;
   margin: 0.5rem 0.25rem;
-  background-color: #4caf50;
+  background-color: #f9d251;
   color: white;
   text-decoration: none;
   border-radius: 5px;
@@ -53,7 +53,7 @@ a.button {
 }
 
 a.button:hover {
-  background-color: #45a049;
+  background-color: #f9d251;
   cursor: pointer;
 }
 

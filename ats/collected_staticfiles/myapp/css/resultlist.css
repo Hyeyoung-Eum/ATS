@@ -8,7 +8,7 @@ body {
 
 header h1 {
   text-align: center;
-  color: #4caf50;
+  color: #000000;
   animation: shake 0.5s infinite;
 }
 
@@ -27,7 +27,7 @@ header h1 {
 
 section h2 {
   margin-top: 20px;
-  color: #4caf50;
+  color: #f9d251;
 }
 
 table {
@@ -52,7 +52,7 @@ a {
   display: block;
   text-align: center;
   margin: 20px;
-  background-color: #4caf50;
+  background-color: #f9d251;
   color: white;
   padding: 10px;
   text-decoration: none;
@@ -60,5 +60,27 @@ a {
 }
 
 a:hover {
-  background-color: #45a049;
+  background-color: #f9d251;
+}
+
+/* 버튼 및 선택 스타일링 */
+select {
+  padding: 8px 15px;
+  border-radius: 20px;
+  background-color: #ffffff;
+  border: 2px solid #0a4870;
+  color: #5d6470;
+  font-size: 16px;
+  outline: none;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+select:hover {
+  background-color: #e1e1e8;
+}
+
+select:focus {
+  border-color: #5d6470;
+  background-color: #e8e8ef;
 }
