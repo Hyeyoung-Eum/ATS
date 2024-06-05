@@ -9,7 +9,7 @@ body {
 }
 
 h3 {
-  color: #4caf50;
+  color: #f9d251;
 }
 
 main {
@@ -49,7 +49,7 @@ select {
 
 header h1 {
   text-align: center;
-  color: #4caf50;
+  color: #000000;
   animation: shake 0.5s infinite;
 }
 
@@ -67,7 +67,7 @@ header h1 {
 }
 
 button {
-  background-color: #4caf50;
+  background-color: #f9d251;
   color: white;
   padding: 10px 15px;
   border: none;
@@ -78,7 +78,7 @@ button {
 }
 
 button:hover {
-  background-color: #45a049;
+  background-color: #f9d251;
 }
 
 #score_a,

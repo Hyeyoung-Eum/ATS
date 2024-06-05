@@ -9,27 +9,38 @@
     <script>
       function fetchSeasonResults() {
         const season = document.getElementById("season-select").value;
-        fetch(`/resultlist?season=${season}`)
+        fetch(`/resultlist?season=${season}`, {
+          headers: {
+            "X-Requested-With": "XMLHttpRequest", // AJAX 요청임을 명시
+          },
+        })
           .then((response) => response.json())
           .then((data) => {
             const todayBody = document.querySelector("#today-results tbody");
             const pastBody = document.querySelector("#past-results tbody");
             todayBody.innerHTML = "";
             pastBody.innerHTML = "";
-            data.games.forEach((game, index) => {
+            data.todays_games.forEach((game, index) => {
               const row = `<tr>
-                            <td>${index + 1}</td>
-                            <td>${game.datetime}</td>
-                            <td>${game.player_a}</td>
-                            <td>${game.player_b}</td>
-                            <td>${game.score_a}</td>
-                            <td>${game.score_b}</td>
-                        </tr>`;
-              if (index < data.todays_games.length) {
-                todayBody.innerHTML += row;
-              } else {
-                pastBody.innerHTML += row;
-              }
+                      <td>${index + 1}</td>
+                      <td>${game.datetime}</td>
+                      <td>${game.player_a}</td>
+                      <td>${game.player_b}</td>
+                      <td>${game.score_a}</td>
+                      <td>${game.score_b}</td>
+                  </tr>`;
+              todayBody.innerHTML += row;
+            });
+            data.past_games.forEach((game, index) => {
+              const row = `<tr>
+                      <td>${index + 1}</td>
+                      <td>${game.datetime}</td>
+                      <td>${game.player_a}</td>
+                      <td>${game.player_b}</td>
+                      <td>${game.score_a}</td>
+                      <td>${game.score_b}</td>
+                  </tr>`;
+              pastBody.innerHTML += row;
             });
           })
           .catch((error) => console.error("Error:", error));

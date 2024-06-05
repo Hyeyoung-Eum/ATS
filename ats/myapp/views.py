@@ -119,34 +119,39 @@ def resultlist(request):
     season = request.GET.get('season', '2')  # 기본적으로 시즌 2를 보여줌
     today = localtime().date()
     
+    # 시즌 필터링과 날짜 기반으로 데이터 쿼리
     if season == "all":
-        todays_games = GameResult.objects.filter(datetime__date=today).order_by('-datetime')
-        past_games = GameResult.objects.filter(datetime__date__lt=today).order_by('-datetime')
+        todays_games = GameResult.objects.filter(datetime__date=today)
+        past_games = GameResult.objects.filter(datetime__date__lt=today)
     else:
         season = int(season)  # 시즌 번호는 정수로 변환
-        todays_games = GameResult.objects.filter(season=season, datetime__date=today).order_by('-datetime')
-        past_games = GameResult.objects.filter(season=season, datetime__date__lt=today).order_by('-datetime')
-    
-    if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-        games = [
-            {
-                'game_number': game.game_number,
-                'datetime': game.datetime.strftime("%Y-%m-%d %H:%M"),
-                'player_a': game.player_a.name,
-                'player_b': game.player_b.name,
-                'score_a': game.score_a,
-                'score_b': game.score_b,
-            }
-            for game in list(todays_games) + list(past_games)
-        ]
-        return JsonResponse({'games': games})
+        todays_games = GameResult.objects.filter(season=season, datetime__date=today)
+        past_games = GameResult.objects.filter(season=season, datetime__date__lt=today)
 
+    todays_games = todays_games.order_by('-datetime')
+    past_games = past_games.order_by('-datetime')
+
+    # JSON 데이터 생성
+    def game_to_dict(game):
+        return {
+            'datetime': game.datetime.strftime("%Y-%m-%d %H:%M"),
+            'player_a': game.player_a.name,
+            'player_b': game.player_b.name,
+            'score_a': game.score_a,
+            'score_b': game.score_b,
+        }
+
+    # AJAX 요청에 대한 JSON 응답
+    if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+        return JsonResponse({
+            'todays_games': [game_to_dict(game) for game in todays_games],
+            'past_games': [game_to_dict(game) for game in past_games]
+        })
+
+    # 초기 페이지 로드에 대한 처리
     return render(request, 'resultlist.html', {
-        'todays_games': todays_games, 
-        'past_games': past_games,
         'selected_season': season
     })
-
 
 def personal(request, personal_id):
     personal_data=User.objects.get(id=personal_id)
