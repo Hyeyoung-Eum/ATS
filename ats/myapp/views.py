@@ -5,6 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.utils import timezone
 from django.db.models import Count, Q, F
 from django.utils.timezone import localtime
+import time
 
 
 import os
@@ -88,7 +89,7 @@ def add(request):
 
         # GameResult 모델에 데이터 저장
         game_result = GameResult(
-            datetime=timezone.now(),
+            datetime=localtime(timezone.now()),
             player_a=player_a,
             player_b=player_b,
             score_a=score_a,
@@ -134,7 +135,7 @@ def resultlist(request):
     # JSON 데이터 생성
     def game_to_dict(game):
         return {
-            'datetime': game.datetime.strftime("%Y-%m-%d %H:%M"),
+            'datetime': localtime(game.datetime).strftime("%Y-%m-%d %H:%M"),
             'player_a': game.player_a.name,
             'player_b': game.player_b.name,
             'score_a': game.score_a,

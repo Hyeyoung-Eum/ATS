@@ -11,7 +11,7 @@
         const season = document.getElementById("season-select").value;
         fetch(`/resultlist?season=${season}`, {
           headers: {
-            "X-Requested-With": "XMLHttpRequest", // AJAX 요청임을 명시
+            "X-Requested-With": "XMLHttpRequest",
           },
         })
           .then((response) => response.json())
@@ -21,29 +21,40 @@
             todayBody.innerHTML = "";
             pastBody.innerHTML = "";
             data.todays_games.forEach((game, index) => {
-              const row = `<tr>
-                      <td>${index + 1}</td>
-                      <td>${game.datetime}</td>
-                      <td>${game.player_a}</td>
-                      <td>${game.player_b}</td>
-                      <td>${game.score_a}</td>
-                      <td>${game.score_b}</td>
-                  </tr>`;
-              todayBody.innerHTML += row;
+              let row = createRow(game, index);
+              todayBody.appendChild(row);
             });
             data.past_games.forEach((game, index) => {
-              const row = `<tr>
-                      <td>${index + 1}</td>
-                      <td>${game.datetime}</td>
-                      <td>${game.player_a}</td>
-                      <td>${game.player_b}</td>
-                      <td>${game.score_a}</td>
-                      <td>${game.score_b}</td>
-                  </tr>`;
-              pastBody.innerHTML += row;
+              let row = createRow(game, index);
+              pastBody.appendChild(row);
             });
           })
           .catch((error) => console.error("Error:", error));
+      }
+
+      function createRow(game, index) {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+            <td>${index + 1}</td>
+            <td>${game.datetime}</td>
+            <td class="score">${game.player_a}</td>
+            <td class="score">${game.score_a}</td>
+            <td class="score">${game.score_b}</td>
+            <td class="score">${game.player_b}</td>
+        `;
+        highlightCells(row, game.score_a, game.score_b);
+        return row;
+      }
+
+      function highlightCells(row, scoreA, scoreB) {
+        const scores = row.querySelectorAll(".score");
+        if (scoreA > scoreB) {
+          scores[0].classList.add("highlight");
+          scores[1].classList.add("highlight");
+        } else if (scoreB > scoreA) {
+          scores[2].classList.add("highlight");
+          scores[3].classList.add("highlight");
+        }
       }
     </script>
   </head>
@@ -65,8 +76,8 @@
             <th>N</th>
             <th>Date</th>
             <th>A</th>
-            <th>B</th>
             <th>A</th>
+            <th>B</th>
             <th>B</th>
           </tr>
         </thead>
@@ -83,8 +94,8 @@
             <th>N</th>
             <th>Date</th>
             <th>A</th>
-            <th>B</th>
             <th>A</th>
+            <th>B</th>
             <th>B</th>
           </tr>
         </thead>

@@ -84,3 +84,7 @@ select:focus {
   border-color: #5d6470;
   background-color: #e8e8ef;
 }
+
+.highlight {
+  background-color: rgb(255, 255, 129);
+}
