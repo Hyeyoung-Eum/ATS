@@ -1,38 +1,38 @@
+{% extends 'base.html' %}
+
+{% block extra_css %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>🏓 에탁소 🏓</title>
     <link rel="stylesheet" href="{% static 'myapp/css/home.css' %}" />
-    <script>
-      function fetchRanking() {
-        const season = document.getElementById("season-select").value;
-        fetch(`/rankings/${season}`) // 비동기 요청을 보낼 URL
-          .then((response) => response.json())
-          .then((data) => {
-            const tableBody = document.querySelector(".user-list tbody");
-            tableBody.innerHTML = ""; // 기존 테이블 내용을 지움
-            data.users.forEach((user, index) => {
-              const row = `<tr class="user-entry">
-                                      <td class="rank">${index + 1}등</td>
-                                      <td class="user-name"><a href="/personal/${user.id}">${user.name}</a></td>
-                                      <td class="stats">${user.wins}</td>
-                                      <td class="stats">${user.draws}</td>
-                                      <td class="stats">${user.losses}</td>
-                                   </tr>`;
-              tableBody.innerHTML += row; // 새로운 랭킹 행을 추가
-            });
-          })
-          .catch((error) => console.error("Error:", error));
-      }
-    </script>
-  </head>
-  <body>
-    <header>
-      <h1>🌞 에탁소 ⛱️</h1>
-    </header>
+{% endblock %}
+
+{% block add_js %}
+<script>
+  function fetchRanking() {
+    const season = document.getElementById("season-select").value;
+    fetch(`/rankings/${season}`) // 비동기 요청을 보낼 URL
+      .then((response) => response.json())
+      .then((data) => {
+        const tableBody = document.querySelector(".user-list tbody");
+        tableBody.innerHTML = ""; // 기존 테이블 내용을 지움
+        data.users.forEach((user, index) => {
+          const row = `<tr class="user-entry">
+                                  <td class="rank">${index + 1}등</td>
+                                  <td class="user-name"><a href="/personal/${user.id}">${user.name}</a></td>
+                                  <td class="stats">${user.wins}</td>
+                                  <td class="stats">${user.draws}</td>
+                                  <td class="stats">${user.losses}</td>
+                               </tr>`;
+          tableBody.innerHTML += row; // 새로운 랭킹 행을 추가
+        });
+      })
+      .catch((error) => console.error("Error:", error));
+  }
+</script>
+{% endblock %}
+
+{% comment %} body start {% endcomment %}
+{% block header %}🌞 에탁소 ⛱️{% endblock %}
+{% block content %}
     <main>
       <select id="season-select" onchange="fetchRanking()">
         <option value="all" {% if selected_season == 'all' %}selected{% endif %}>전체 시즌</option>
@@ -90,5 +90,4 @@
         <a class="button" href="{% url 'upload_photo' %}">사진 추가</a>
       </div>
     </section>
-  </body>
-</html>
+{% endblock %}

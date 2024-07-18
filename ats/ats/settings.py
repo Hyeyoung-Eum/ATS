@@ -56,8 +56,11 @@ ROOT_URLCONF = 'ats.urls'
 
 TEMPLATES = [
     {
+        #사용할 템플릿 엔진 지정
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        #템플릿 파일을 찾을 경로의 목록
+        'DIRS': [], #전역 템플릿 디렉토리 설정
+        #이 설정이 켜져있으면, 자동으로 templates 하위 디렉토리를 검색하여 템플릿 파일을 찾음.
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
