@@ -1,0 +1,140 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background: #f0f0f0;
+}
+
+.container {
+  width: 100%;
+  max-width: 480px; /*모바일 최대 너비*/
+  background: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+  text-align: center;
+  color: #000000;
+  animation: shake 0.5s infinite;
+}
+
+footer {
+  text-align: center;
+  color: #9f9f9f;
+  font-size: 0.8rem;
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(4px);
+  }
+  75% {
+    transform: translateX(-4px);
+  }
+}
+
+main {
+  max-width: 800px;
+  margin: 20px auto;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+th {
+  background-color: #f0f0f0;
+}
+
+a.button {
+  display: inline-block;
+  padding: 0.5rem 0.8rem;
+  margin: 0.5rem 0.25rem;
+  background-color: #f9d251;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  text-align: center;
+}
+
+a.button:hover {
+  background-color: #f9d251;
+  cursor: pointer;
+}
+
+.links {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.photos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap; /* 추가: 화면 크기에 따라 사진들이 적절히 줄바꿈 */
+}
+
+.photo {
+  flex: 1 1 50%; /* 추가: 사진이 화면의 50% 너비를 차지하도록 설정 */
+  max-width: 300px; /* 추가: 최대 너비 설정 */
+  margin: 10px; /* 추가: 사진 간 간격 조정 */
+}
+
+img {
+  width: 100%;
+  height: auto;
+  max-height: 200px; /* 수정: 이미지 최대 높이 설정 */
+  object-fit: contain;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.photos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.imgtext {
+  font-size: 0.7rem;
+}
+
+.photo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+a {
+  text-decoration: none;
+  color: gray;
+}
